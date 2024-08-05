@@ -4,10 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MatrixGUI extends JFrame {
-    private JTextArea matrixAInput;
-    private JTextArea matrixBInput;
-    private JTextArea resultOutput;
+    private JTextArea matrixAInput;  // Text area for inputting matrix A
+    private JTextArea matrixBInput;  // Text area for inputting matrix B
+    private JTextArea resultOutput;  // Text area for displaying results
 
+    // Constructor to set up the GUI components
     public MatrixGUI() {
         setTitle("Matrix Operations Tool");
         setSize(600, 400);
@@ -34,24 +35,28 @@ public class MatrixGUI extends JFrame {
 
         // Result Panel
         resultOutput = new JTextArea(10, 50);
-        resultOutput.setEditable(false);
+        resultOutput.setEditable(false);  // Result area is not editable
 
         add(inputPanel, BorderLayout.NORTH);
         add(buttonsPanel, BorderLayout.CENTER);
         add(new JScrollPane(resultOutput), BorderLayout.SOUTH);
     }
 
+    // Helper method to add operation buttons to the panel
     private void addOperationButton(JPanel panel, String name, ActionListener action) {
-        JButton button = new JButton(name);
-        button.addActionListener(action);
-        panel.add(button);
+        JButton button = new JButton(name);  // Create a new button with the given name
+        button.addActionListener(action);  // Add the action listener to the button
+        panel.add(button);  // Add the button to the panel
     }
 
+    // Method to perform the selected matrix operation
     private void performOperation(String operation) {
-        int[][] matrixA = parseMatrix(matrixAInput.getText());
-        int[][] matrixB = parseMatrix(matrixBInput.getText());
-        int[][] result = null;
+        int[][] matrixA = parseMatrix(matrixAInput.getText());  // Parse matrix A input
+        int[][] matrixB = parseMatrix(matrixBInput.getText());  // Parse matrix B input
+        int[][] result = null;  // Resulting matrix
         int scalar = 2; // Example scalar value for scalar multiplication
+
+        // Perform the selected operation
         switch (operation) {
             case "multiply":
                 result = MatrixOperations.multiply(matrixA, matrixB);
@@ -78,41 +83,46 @@ public class MatrixGUI extends JFrame {
                 result = MatrixOperations.scalarMultiply(matrixB, scalar);
                 break;
         }
-        displayResult(result);
+        displayResult(result);  // Display the result of the operation
     }
 
+    // Method to parse a matrix from a string
     private int[][] parseMatrix(String text) {
-        String[] rows = text.split("\n");
-        int[][] matrix = new int[rows.length][];
+        String[] rows = text.split("\n");  // Split the text into rows
+        int[][] matrix = new int[rows.length][];  // Initialize the matrix
+
+        // Parse each row into integers
         for (int i = 0; i < rows.length; i++) {
-            String[] values = rows[i].split("\\s+");
-            matrix[i] = new int[values.length];
+            String[] values = rows[i].split("\\s+");  // Split the row into values
+            matrix[i] = new int[values.length];  // Initialize the row in the matrix
             for (int j = 0; j < values.length; j++) {
-                matrix[i][j] = Integer.parseInt(values[j]);
+                matrix[i][j] = Integer.parseInt(values[j]);  // Parse each value as an integer
             }
         }
-        return matrix;
+        return matrix;  // Return the parsed matrix
     }
 
+    // Method to display the result matrix
     private void displayResult(int[][] result) {
         if (result == null) {
-            resultOutput.setText("Invalid operation.");
+            resultOutput.setText("Invalid operation.");  // Display error message if result is null
             return;
         }
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();  // StringBuilder for the result text
         for (int[] row : result) {
             for (int value : row) {
-                sb.append(value).append("\t");
+                sb.append(value).append("\t");  // Append each value followed by a tab
             }
-            sb.append("\n");
+            sb.append("\n");  // Append a newline after each row
         }
-        resultOutput.setText(sb.toString());
+        resultOutput.setText(sb.toString());  // Set the result text area with the result string
     }
 
+    // Main method to run the GUI application
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            MatrixGUI gui = new MatrixGUI();
-            gui.setVisible(true);
+            MatrixGUI gui = new MatrixGUI();  // Create the GUI instance
+            gui.setVisible(true);  // Make the GUI visible
         });
     }
 }
