@@ -8,8 +8,5 @@
 - **Element-wise Operations**: Perform element-wise addition of two matrices.
 - **Scalar Multiplication**: Multiply a matrix by a scalar.
 
-## Getting Started
 
-### Prerequisites
-
-- Java Development Kit (JDK) 8 or higher
+<img src="Matrix Operations Tool SS.png" width="1000">
