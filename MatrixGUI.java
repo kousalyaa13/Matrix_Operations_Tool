@@ -1,5 +1,5 @@
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.*; // Graphical User interface (GUI) widget toolkit for Java
+import java.awt.*; // Abstract Window Toolkit (AWT) develops GUI or window-based applications in java
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -112,8 +112,9 @@ public class MatrixGUI extends JFrame {
 
     // Main method to run the GUI application
     public static void main(String[] args) {
+    // Ensure that the GUI creation and updates are done on the Event Dispatch Thread (EDT)
         SwingUtilities.invokeLater(() -> {
-            MatrixGUI gui = new MatrixGUI();  // Create the GUI instance
+            MatrixGUI gui = new MatrixGUI();  // Create an instance of the MatrixGUI class
             gui.setVisible(true);  // Make the GUI visible
         });
     }
