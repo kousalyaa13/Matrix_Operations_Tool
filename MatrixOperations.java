@@ -36,25 +36,6 @@ public class MatrixOperations {
         return result;  // Return the transposed matrix
     }
 
-    // Determinant calculation (assuming a square matrix)
-    // Computes and returns the determinant of the given square matrix.
-    public static int determinant(int[][] matrix) {
-        int n = matrix.length;  // Size of the square matrix
-
-        // Base case for 1x1 matrix
-        if (n == 1) return matrix[0][0];
-
-        // Base case for 2x2 matrix
-        if (n == 2) return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
-
-        int det = 0;  // Variable to store the determinant
-        for (int i = 0; i < n; i++) {
-            int[][] minor = getMinor(matrix, 0, i);  // Get the minor matrix
-            det += Math.pow(-1, i) * matrix[0][i] * determinant(minor);  // Recursively compute the determinant
-        }
-        return det;  // Return the determinant
-    }
-
     // Helper method to get the minor of a matrix
     // Computes and returns the minor matrix by excluding the specified row and column.
     private static int[][] getMinor(int[][] matrix, int row, int col) {
