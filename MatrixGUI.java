@@ -27,8 +27,6 @@ public class MatrixGUI extends JFrame {
         addOperationButton(buttonsPanel, "Multiply", e -> performOperation("multiply"));
         addOperationButton(buttonsPanel, "Transpose A", e -> performOperation("transposeA"));
         addOperationButton(buttonsPanel, "Transpose B", e -> performOperation("transposeB"));
-        addOperationButton(buttonsPanel, "Determinant A", e -> performOperation("determinantA"));
-        addOperationButton(buttonsPanel, "Determinant B", e -> performOperation("determinantB"));
         addOperationButton(buttonsPanel, "Add", e -> performOperation("add"));
         addOperationButton(buttonsPanel, "Scalar Multiply A", e -> performOperation("scalarMultiplyA"));
         addOperationButton(buttonsPanel, "Scalar Multiply B", e -> performOperation("scalarMultiplyB"));
@@ -67,12 +65,6 @@ public class MatrixGUI extends JFrame {
             case "transposeB":
                 result = MatrixOperations.transpose(matrixB);
                 break;
-            case "determinantA":
-                resultOutput.setText("Determinant of Matrix A: " + MatrixOperations.determinant(matrixA));
-                return;
-            case "determinantB":
-                resultOutput.setText("Determinant of Matrix B: " + MatrixOperations.determinant(matrixB));
-                return;
             case "add":
                 result = MatrixOperations.add(matrixA, matrixB);
                 break;
